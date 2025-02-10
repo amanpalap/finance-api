@@ -9,6 +9,7 @@
     "build": "node ace build",
     "dev": "node ace serve --hmr",
     "mig": "node ace migration:run",
+    "rollback": "node ace migration:rollback --batch 1",
     "test": "node ace test",
     "lint": "eslint .",
     "format": "prettier --write .",

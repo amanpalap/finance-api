@@ -26,7 +26,7 @@ export default class AuthController {
             email: payload.email,
             password: payload.password,
             role: payload.role || UserRole.USER,
-            referredBy: payload.referredBy || 1
+            referredBy: payload.referredBy || undefined
         })
         return response.json({
             status: true,
