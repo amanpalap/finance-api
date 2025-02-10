@@ -1,5 +1,5 @@
 import type { HttpContext } from '@adonisjs/core/http'
-import User from '#models/user'
+import User, { UserRole } from '#models/user'
 import { signupValidator } from '#validators/user'
 
 export default class AuthController {
@@ -24,7 +24,9 @@ export default class AuthController {
         const user = await User.create({
             name: payload.name,
             email: payload.email,
-            password: payload.password
+            password: payload.password,
+            role: payload.role || UserRole.USER,
+            referredBy: payload.referredBy || 1
         })
         return response.json({
             status: true,

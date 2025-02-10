@@ -17,14 +17,15 @@ export enum UserRole {
 }
 
 
-
-
 export default class User extends compose(BaseModel, AuthFinder) {
   @column({ isPrimary: true })
   declare id: number
 
   @column()
   declare name: string
+
+  @column()
+  declare referredBy?: number
 
   @column()
   declare email: string

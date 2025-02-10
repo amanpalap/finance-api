@@ -1,4 +1,5 @@
 import { BaseSchema } from '@adonisjs/lucid/schema'
+import { UserRole } from '#models/user'
 
 export default class extends BaseSchema {
   protected tableName = 'users'
@@ -9,8 +10,8 @@ export default class extends BaseSchema {
       table.string('name').notNullable()
       table.string('email', 254).notNullable().unique()
       table.string('password').notNullable()
-      table.string('phone', 15).nullable().unique()
-      table.text('address').nullable()
+      table.enum('role', Object.values(UserRole)).notNullable().defaultTo(UserRole.USER)
+      table.integer('referred_by').unsigned().references('id').inTable('users').onDelete('CASCADE').nullable()
 
       table.timestamps(true, true)
     })
